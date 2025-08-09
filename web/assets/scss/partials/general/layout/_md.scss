@@ -1,0 +1,25 @@
+@use "sass:math";
+
+.container,
+.container-md {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.row-md {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: calc(-1 * var(--col-spacing, 15px));
+    padding-right: calc(-1 * var(--col-spacing, 15px));
+}
+
+.col-md {
+    flex: 1 1 auto;
+    padding-left: var(--col-spacing, 15px);
+    padding-right: var(--col-spacing, 15px);
+}
+@for $i from 1 through 12 {
+    .col-md-#{$i} {
+        flex: 0 0 math.percentage(math.div($i, 12));
+    }
+}

@@ -1,0 +1,29 @@
+@use "sass:math";
+
+.container,
+.container-md,
+.container-lg,
+.container-xl {
+    max-width: 1680px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row-xl {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: calc(-1 * var(--col-spacing, 15px));
+    padding-right: calc(-1 * var(--col-spacing, 15px));
+}
+
+.col-xl {
+    flex: 1 1 auto;
+    padding-left: var(--col-spacing, 15px);
+    padding-right: var(--col-spacing, 15px);
+}
+@for $i from 1 through 12 {
+    .col-xl-#{$i} {
+        flex: 0 0 math.percentage(math.div($i, 12));
+    }
+}

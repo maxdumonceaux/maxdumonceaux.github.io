@@ -1,0 +1,13 @@
+@use "../../settings";
+
+.bg-primary {
+    background: settings.$color-primary;
+}
+
+.bg-secondary {
+    background: settings.$color-secondary;
+}
+
+.bg-accent {
+    background: settings.$color-accent;
+}

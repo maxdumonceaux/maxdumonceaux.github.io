@@ -1,0 +1,82 @@
+@use "../../settings";
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6em;
+    line-height: 1.5;
+    font-family: settings.$font-family-body;
+    font-weight: 500;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5
+h6,
+.h6 {
+    margin-top: 0;
+    font-family: settings.$font-family-headings;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.2;
+    color: settings.$color-headings;
+}
+
+%h1 {
+    font-size: 35px;
+    margin-bottom: 24px;
+}
+
+%h2 {
+    font-size: 28px;
+    margin-bottom: 24px;
+}
+
+%h3 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+%h4 {
+    font-size: 21px;
+    margin-bottom: 16px;
+}
+
+%h5 {
+    font-size: 18px;
+    font-weight: 700;
+    color: settings.$color-primary;
+    margin-bottom: 12px;
+}
+
+%h6 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+@for $i from 1 through 6 {
+    h#{$i},
+    .h#{$i} {
+        @extend %h#{$i};
+    }
+}
+
+ul {
+    margin: 0;
+}
+
+@each $align in (left, center, right, justify) {
+    .text-align-#{$align} {
+        text-align: $align;
+    }
+}

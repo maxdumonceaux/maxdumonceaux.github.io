@@ -1,0 +1,5 @@
+@each $display in (none,block) {
+    .d-lg-#{$display} {
+        display: $display !important;
+    }
+}

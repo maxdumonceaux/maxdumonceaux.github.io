@@ -1,0 +1,5 @@
+@each $display in (none,block) {
+    .d-md-#{$display} {
+        display: $display !important;
+    }
+}
