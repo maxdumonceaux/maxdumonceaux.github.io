@@ -80,3 +80,30 @@ ul {
         text-align: $align;
     }
 }
+
+a {
+    text-decoration: none;
+    color: settings.$color-primary;
+    position: relative;
+    transition: color settings.$transition;
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 0;
+        border-bottom: 1px solid settings.$color-primary;
+        transition: width settings.$transition,
+                    border-color settings.$transition;
+    }
+
+    &:hover {
+        color: settings.$color-accent;
+
+        &::before {
+            width: 82%;
+            border-bottom-color: settings.$color-accent;
+        }
+    }
+}

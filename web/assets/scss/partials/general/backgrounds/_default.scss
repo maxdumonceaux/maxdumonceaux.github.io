@@ -2,6 +2,19 @@
 
 .bg-primary {
     background: settings.$color-primary;
+    a {
+        color: settings.$color-body;
+        &::before {
+            border-bottom-color: settings.$color-body;
+        }
+
+        &:hover {
+            color: settings.$color-body;
+            &::before {
+                border-bottom-color: settings.$color-body;
+            }
+        }
+    }
 }
 
 .bg-secondary {
