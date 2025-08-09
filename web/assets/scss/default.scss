@@ -4,4 +4,7 @@
 @use "partials/general/display/default" as display;
 
 @use "partials/sections/under-construction/default" as underConstruction;
+
+@use "partials/sections/header/default" as header;
+@use "partials/sections/footer/default" as footer;
 @use "partials/sections/socket/default" as socket;

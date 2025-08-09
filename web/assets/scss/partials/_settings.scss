@@ -1,8 +1,8 @@
 $size-tablet: 768px;
 $size-desktop: 1280px;
 
-$font-family-body: "Noto Sans", sans-serif;
-$font-family-headings: "Oswald", sans-serif;
+$font-family-body: "Questrial", sans-serif;
+$font-family-headings: "Sorts Mill Goudy", sans-serif;
 
 $color-primary: #677998;
 $color-secondary: #6E6798;
@@ -11,3 +11,11 @@ $color-headings: #333333;
 $color-body: #3c3c3c;
 
 $transition: ease-in-out .25s;
+
+$sizeMapping: (
+    1: 0.25em,
+    2: 0.5em,
+    3: 0.75em,
+    4: 1.5em,
+    5: 3em
+);

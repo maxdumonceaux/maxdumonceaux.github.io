@@ -6,87 +6,113 @@
         <link rel="canonical" href="https://maxdumonceaux.github.io/" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/assets/dist/default.css" />
         <link rel="stylesheet" type="text/css" href="/assets/dist/md.css" media="all and (min-width: 768px)" />
         <link rel="stylesheet" type="text/css" href="/assets/dist/lg.css" media="all and (min-width: 1280px)" />
         <link rel="stylesheet" type="text/css" href="/assets/dist/xl.css" media="all and (min-width: 1920px)" />
     </head>
     <body>
-        <div class="under-construction"><div class="container"></div></div>
+        <input type="checkbox" class="d-none" id="toggle-under-construction" />
+        <div class="under-construction"><div class="container"><label class="d-none" for="toggle-under-construction">I understand, let me see it anyways.</label></div></div>
         <input type="checkbox" class="d-none" id="toggle-nav" />
-        <header class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 col-md-4">
-                        Logo goes here
-                    </div>
-                    <nav class="col-6 col-md-8">
-                        <ul class="menu">
-                            <li class="nav-hidden nav-none-md">
-                                <a href="/">
-                                    Home
-                                </a>
-                            </li>
-                            <li class="nav-hidden nav-none-md">
-                                <input type="checkbox" class="d-none" id="toggle-nav-porfolio" />
-                                <a href="/portfolio/">
-                                    Portfolio <label class="dropdown-toggle" for="toggle-nav-portfolio" role="button" aria-pressed="false">Display Sub-menu</label>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        Coming Soon!
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-hidden nav-none-md">
-                                <a href="/about/">
-                                    About me
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/contact/">
-                                    Contact
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <footer class="footer bg-primary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        TODO: Executive Summary goes here
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h3 class="h4">Links</h3>
-                        <ul>
-                            <li>
-                                <a href="https://github.com/maxdumonceaux" rel="noreferrer noopener" target="_blank">
-                                    GitHub
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/in/max-dumonceaux-4a909aa3/" rel="noreferrer noopener" target="_blank">
-                                    LinkedIn
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/assets/docs/resume.pdf" rel="noreferrer noopener" target="_blank">
-                                    Resume
-                                </a>
-                            </li>
-                        </ul>
+        <div class="main-container">
+            <header class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                            <a href="/">
+                                <img srcset="
+                                    data:image/png;base64,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 170w,
+                                    data:image/png;base64,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 300w" 
+                                     sizes="(width <= 768px) 170px, 300px" 
+                                     src="data:image/png;base64,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"
+                                     alt="" />
+                            </a>
+                        </div>
+                        <nav class="col-6 col-md-8">
+                            <ul class="menu">
+                                <li class="nav-hidden nav-none-md">
+                                    <a href="/">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="nav-hidden nav-none-md">
+                                    <input type="checkbox" class="d-none" id="toggle-nav-portfolio" />
+                                    <a href="/portfolio/">
+                                        Portfolio
+                                    </a>
+                                    <label class="dropdown-toggle" for="toggle-nav-portfolio" role="button" aria-pressed="false">Display Sub-menu</label>
+                                    <ul class="sub-menu">
+                                        <li>
+                                            Coming Soon!
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-hidden nav-none-md">
+                                    <a href="/about/">
+                                        About me
+                                    </a>
+                                </li>
+                                <li class="nav-hidden nav-none-md">
+                                    <a href="/contact/">
+                                        Contact
+                                    </a>
+                                </li>
+                                <li class="d-md-none">
+                                    <label class="hamburger" for="toggle-nav" role="button" aria-pressed="false">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
-            </div>
-        </footer>
-        <div class="socket bg-secondary">
-            <div class="container text-align-center">
-                &copy;2025 Max Dumonceaux
+            </header>
+            <div style="height: 2000px;"></div>
+            <footer class="footer bg-primary">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            TODO: Executive Summary goes here
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h3 class="h4">Links</h3>
+                            <ul class="social">
+                                <li>
+                                    <a href="https://github.com/maxdumonceaux" rel="noreferrer noopener" target="_blank">
+                                        GitHub
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/in/max-dumonceaux-4a909aa3/" rel="noreferrer noopener" target="_blank">
+                                        LinkedIn
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/assets/docs/resume.pdf" rel="noreferrer noopener" target="_blank">
+                                        Resume
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div class="socket bg-secondary">
+                <div class="container text-align-center">
+                    &copy;2025 Max Dumonceaux
+                </div>
             </div>
         </div>
+        <script>
+            if (-1 !== window.location.search.indexOf('allow-access=1')) {
+                const toggleUnderConstruction = document.querySelector('[for="toggle-under-construction"]')
+                toggleUnderConstruction.classList.remove('d-none')
+                toggleUnderConstruction.classList.add('d-flex')
+            }
+        </script>
     </body>
 </html>

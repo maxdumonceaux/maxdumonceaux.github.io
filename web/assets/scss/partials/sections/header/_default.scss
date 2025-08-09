@@ -1,0 +1,154 @@
+@use "../../settings";
+
+@keyframes drawerOpen {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 0;
+    img {
+        display: block;
+    }
+
+    .menu {
+        transition: transform settings.$transition;
+        list-style: none;
+        padding: 0;
+
+        .nav-hidden {
+            display: none;
+        }
+
+        .sub-menu {
+            flex-basis: 100%;
+            overflow: hidden;
+            height: 0;
+            max-height: 0;
+            transition: height settings.$transition,
+                        max-height settings.$transition;
+        }
+        
+        .dropdown-toggle {
+            display: block;
+            white-space: nowrap;
+            text-indent: 150%;
+            overflow: hidden;
+            line-height: 6;
+            width: 36px;
+            height: 24px;
+            cursor: pointer;
+            &::before {
+                content: "";
+                width: 18px;
+                height: 18px;
+                margin-left: 6px;
+                margin-top: 2px;
+                display: block;
+                border-radius: 2px;
+                border-bottom: 2px solid settings.$color-body;
+                border-right: 2px solid settings.$color-body;
+                transform: rotate(45deg);
+                transition: transform settings.$transition, margin settings.$transition;
+            }
+        }
+
+        [type="checkbox"]:checked{
+            ~ .dropdown-toggle {
+                &::before {
+                    margin-top: 8px;
+                    transform: rotate(-135deg);
+                }
+            }
+            ~ .sub-menu {
+                max-height: 240px;
+                height: var(--height, auto);
+            }
+        } 
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 36px;
+            height: 24px;
+            position: absolute;
+            cursor: pointer;
+            /** Todo: manually measure this once I have a proper logo in place. */
+            top: 33.2px;
+            right: 15px;
+            span {
+                border: 1px solid settings.$color-body;
+                background: settings.$color-body;
+                height: 4px;
+                border-radius: 4px;
+                transition: transform settings.$transition;
+                transform-origin: 0 0;
+            }
+        }
+    }
+}
+
+#toggle-nav:checked {
+    ~ .main-container {
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(settings.$color-body, 0.69);
+        }
+
+        .header {
+            .menu {
+                box-shadow: 0 0 6px rgba(settings.$color-body, 0.49);
+                position: fixed;
+                top: 0;
+                left: 20%;
+                width: 80%;
+                height: 100%;
+                padding: 20% 10%;
+                background: #fff;
+                animation: drawerOpen settings.$transition;
+                font-size: 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                .sub-menu {
+                    list-style: none;
+                    font-size: 21px;
+                }
+                li.nav-hidden {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                }
+                .hamburger {
+                    span {
+                        opacity: 0;
+                        &:first-child {
+                            opacity: 1;
+                            transform: rotate(45deg) translateX(-2px);
+                        }
+                        &:last-child {
+                            opacity: 1;
+                            transform: rotate(-45deg) translateX(-5px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

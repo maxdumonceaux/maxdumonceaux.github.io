@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "../../settings";
 
 .container,
 .container-md,
@@ -25,5 +26,30 @@
 @for $i from 1 through 12 {
     .col-xl-#{$i} {
         flex: 0 0 math.percentage(math.div($i, 12));
+    }
+    .offset-xl-#{$i} {
+        margin-left: math.percentage(math.div($i, 12));
+    }
+}
+
+@each $size, $spacing in settings.$sizeMapping {
+    @each $letter, $type in (m: margin, p: padding) {
+        @each $dletter, $direction in (t: top, b: bottom, l: left, r: right) {
+            .#{$letter}#{$dletter}-xl-#{$size} {
+                #{type}-#{$direction}: $spacing;
+            }
+        }
+        #{$letter}x-xl-#{$size} {
+            @extend .#{$letter}l-#{$size} !optional;
+            @extend .#{$letter}r-#{$size} !optional;
+        }
+        #{$letter}y-xl-#{$size} {
+            @extend .#{$letter}t-#{$size} !optional;
+            @extend .#{$letter}b-#{$size} !optional;
+        }
+        #{$letter}-xl-#{size} {
+            @extend .#{$letter}x-#{size} !optional;
+            @extend .#{$letter}x-#{size} !optional;
+        }
     }
 }

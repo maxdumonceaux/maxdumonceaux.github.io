@@ -1,3 +1,18 @@
+@use "../../settings";
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
 .under-construction {
     position: fixed;
     top: 0;
@@ -16,6 +31,49 @@
         text-align: center;
         &::before {
             content: "This website is under construction.";
+        }
+    }
+
+    [for="toggle-under-construction"] {
+        font-size: 1.8rem;
+        align-items: center;
+        gap: 6px;
+        position: relative;
+        cursor: pointer;
+        transition: color settings.$transition;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 18px;
+            height: 18px;
+            border: 1px solid settings.$color-body;
+            transition: border-color settings.$transition;
+        }
+        &::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            margin-top: 1px;
+            transform: translateY(-50%);
+            left: 3px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity settings.$transition;
+            color: settings.$color-secondary;
+        }
+    }
+    #toggle-under-construction:checked ~ & {
+        animation: fadeOut ease-in-out 0.5s forwards;
+        animation-delay: 1s;
+        [for="toggle-under-construction"] {
+            color: settings.$color-secondary;
+            &::before {
+                border-color: settings.$color-secondary;
+            }
+            &::after {
+                opacity: 1;
+            }
         }
     }
 }
