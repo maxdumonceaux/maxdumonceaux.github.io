@@ -15,7 +15,10 @@ concurrency:
   cancel-in-progress: false
   
 jobs:
-  compile:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -39,13 +42,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './web'
-          
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Deploy to GitHub pages
         id: deployment
         uses: actions/deploy-pages@v4
