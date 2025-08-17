@@ -17,6 +17,11 @@
     width: 100%;
     padding: 18px 0;
     z-index: 10;
+    transition: background-color settings.$transition;
+
+    .scrolled & {
+        background: map.get(settings.$colors, secondary);
+    }
     .logo {
         a {
             &::before {
@@ -32,6 +37,16 @@
         transition: transform settings.$transition;
         list-style: none;
         padding: 0;
+        .current {
+            > a {
+                color: map.get(settings.$colors, accent);
+
+                &::before {
+                    width: 82%;
+                    border-bottom-color: map.get(settings.$colors, accent);
+                }
+            }
+        }
 
         .nav-hidden {
             display: none;

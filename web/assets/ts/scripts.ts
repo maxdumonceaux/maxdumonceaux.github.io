@@ -6,4 +6,33 @@ window.addEventListener('load', () => {
             toggleUnderConstruction.classList.add('d-flex')
         }
     }
+
+    const navMenuItems : NodeListOf<HTMLAnchorElement> = document.querySelectorAll('.menu a[href^="#"]')
+
+    const intersectionObserver = new IntersectionObserver(entries => {
+        navMenuItems.forEach(navMenuItem => navMenuItem.parentElement!.classList.remove('current'))
+        const entitiesInViewport = entries.filter(entry => entry.isIntersecting)
+        if (!entitiesInViewport.length) {
+            return
+        }
+
+        const entityInViewport = entitiesInViewport[entitiesInViewport.length - 1]
+
+        navMenuItems.forEach(navMenuItem => {
+            if (-1 !== navMenuItem.href.indexOf((entityInViewport.target as HTMLAnchorElement).id)) {
+                navMenuItem.parentElement!.classList.add('current')
+            }
+        })
+    }, {
+        threshold: 1.0
+    })
+    document.querySelectorAll("a[name]").forEach(sectionBoundary => intersectionObserver.observe(sectionBoundary))
+
+    window.addEventListener('scroll', () => {
+        if (10 < window.scrollY) {
+            document.documentElement!.classList.add('scrolled')
+        } else {
+            document.documentElement!.classList.remove('scrolled')
+        }
+    })
 })
