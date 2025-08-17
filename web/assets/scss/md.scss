@@ -2,4 +2,6 @@
 @use "partials/general/layout/md" as layout;
 @use "partials/general/display/md" as display;
 
+@use "partials/sections/md" as sections;
+@use "partials/sections/header/md" as header;
 @use "partials/sections/socket/md" as socket;

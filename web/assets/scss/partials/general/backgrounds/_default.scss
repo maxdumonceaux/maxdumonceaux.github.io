@@ -1,26 +1,30 @@
 @use "../../settings";
+@use "sass:map";
 
-.bg-primary {
-    background: settings.$color-primary;
-    a {
-        color: settings.$color-body;
-        &::before {
-            border-bottom-color: settings.$color-body;
-        }
+@each $key, $color in settings.$colors {
+    @if (text != $key) { 
+        .bg-#{"" + $key} {
+            background: map.get(settings.$colors, $key);
+            color: map.get(settings.$colors, white);
+            @for $i from 1 through 6 {
+                .h#{$i},
+                h#{$i} {
+                    color: map.get(settings.$colors, white);
+                }
+            }
+            a {
+                color: map.get(settings.$colors, white);
+                &::before {
+                    border-bottom-color: map.get(settings.$colors, white);
+                }
 
-        &:hover {
-            color: settings.$color-body;
-            &::before {
-                border-bottom-color: settings.$color-body;
+                &:hover {
+                    color: map.get(settings.$colors, white);
+                    &::before {
+                        border-bottom-color: map.get(settings.$colors, white);
+                    }
+                }
             }
         }
     }
-}
-
-.bg-secondary {
-    background: settings.$color-secondary;
-}
-
-.bg-accent {
-    background: settings.$color-accent;
 }

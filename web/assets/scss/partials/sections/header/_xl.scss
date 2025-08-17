@@ -1,0 +1,21 @@
+@use "sass:math";
+
+.header {
+    .menu {
+        .hamburger {
+            right: calc(50% - math.div(1680px, 2));
+        }
+    }
+}
+
+#toggle-nav:checked {
+    ~ .main-container {
+        .header {
+            .menu {
+                .hamburger {
+                    right: 50px;
+                }
+            }
+        }
+    }
+}

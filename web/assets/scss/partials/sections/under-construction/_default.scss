@@ -1,4 +1,5 @@
 @use "../../settings";
+@use "sass:map";
 
 @keyframes fadeOut {
     0% {
@@ -28,9 +29,11 @@
         left: 50%;
         font-size: 2.1rem;
         transform: translate(-50%, -50%);
-        text-align: center;
+        flex-wrap: wrap;
+        justify-content: center;
         &::before {
             content: "This website is under construction.";
+            flex-basis: 100%;
         }
     }
 
@@ -41,13 +44,14 @@
         position: relative;
         cursor: pointer;
         transition: color settings.$transition;
+        justify-content: center;
 
         &::before {
             content: "";
             display: block;
             width: 18px;
             height: 18px;
-            border: 1px solid settings.$color-body;
+            border: 1px solid map.get(settings.$colors, text);
             transition: border-color settings.$transition;
         }
         &::after {
@@ -60,16 +64,16 @@
             text-align: center;
             opacity: 0;
             transition: opacity settings.$transition;
-            color: settings.$color-secondary;
+            color: map.get(settings.$colors, accent);
         }
     }
     #toggle-under-construction:checked ~ & {
         animation: fadeOut ease-in-out 0.5s forwards;
         animation-delay: 1s;
         [for="toggle-under-construction"] {
-            color: settings.$color-secondary;
+            color: map.get(settings.$colors, accent);
             &::before {
-                border-color: settings.$color-secondary;
+                border-color: map.get(settings.$colors, accent);
             }
             &::after {
                 opacity: 1;

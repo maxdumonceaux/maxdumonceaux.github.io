@@ -1,0 +1,98 @@
+@use "sass:map";
+@use "../../settings";
+
+.deck {
+    perspective: 1000px;
+    display: flex;
+    .card-container {
+        flex: 1 1 auto;
+        height: 350px;
+        position: relative;
+    }
+
+    &::after {
+        content: "";
+        clear: both;
+        display: block;
+    }
+}
+
+.card {
+    display: block;
+    height: 100%;
+    width: 250px;
+    transform-style: preserve-3d;
+    border: 1px solid #000;
+    position: relative;
+    border-radius: 13px;
+    border: 13px solid map.get(settings.$colors, white);
+    transform: rotateY(180deg);
+    transition: transform settings.$transition, box-shadow settings.$transition;
+    box-shadow: 0 1px 6px rgba(map.get(settings.$colors, text), 0.26);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .front,
+    .back {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .back {
+        content: "";
+        overflow:hidden;
+        z-index: -1;
+        display: block;
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        box-sizing: border-box;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            z-index: -1;
+            left: 1px;
+            top: -5px;
+            background: 
+                repeating-conic-gradient(map.get(settings.$colors, secondary) 0 25%, map.get(settings.$colors, white) 0 50%)
+                    50% / 20px 20px;
+            transform: translate(-25%, -25%) rotateY(180deg) rotate(45deg);
+        }
+    }
+    .front {
+        z-index:1;
+        background: map.get(settings.$colors, white);
+    }
+
+    @each $key, $color in settings.$colors {
+        &.#{"" + $key} {
+            .back {
+                &::before {
+                    background: repeating-conic-gradient($color 0 25%, map.get(settings.$colors, white) 0 50%)
+                        50% / 20px 20px;
+                }
+            }
+        }
+    }
+}
+
+label.card {
+    box-shadow: 0 1px 6px rgba(map.get(settings.$colors, text), 0.46);
+    transform: translateY(-12px) rotateY(180deg);
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0 1px 6px rgba(map.get(settings.$colors, text), 0.6);
+        transform: translateY(-24px) rotateY(180deg);
+        z-index: 1;
+    }
+
+    [type="checkbox"]:checked + &,
+    [type="radio"] + & {
+        transform: rotate(0);
+    }
+}

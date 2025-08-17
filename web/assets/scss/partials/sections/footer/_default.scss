@@ -1,4 +1,5 @@
 @use "../../settings";
+@use "sass:map";
 
 .footer {
     padding-top: 18px;
@@ -33,6 +34,7 @@
             }
 
             &:hover {
+                color: map.get(settings.$colors, tertiary);
                 &::before {
                     opacity: 0;
                 }
@@ -50,10 +52,6 @@
             &::after {
                 background-image: url(/assets/images/icon-linkedin-hover.png);
             }
-
-            &:hover {
-                color: #0077B5;
-            }
         }
         a[href*="github"] {
             &::before {
@@ -63,10 +61,6 @@
             &::after {
                 background-image: url(/assets/images/icon-github-hover.svg);
             }
-
-            &:hover {
-                color: #24292f;
-            }
         }
         a[href$=".pdf"] {
             &::before {
@@ -75,10 +69,6 @@
 
             &::after {
                 background-image: url(/assets/images/icon-pdf-hover.svg);
-            }
-
-            &:hover {
-                color: #24292f;
             }
         }
     }

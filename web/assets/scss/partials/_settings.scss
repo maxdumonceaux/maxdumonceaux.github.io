@@ -4,11 +4,14 @@ $size-desktop: 1280px;
 $font-family-body: "Questrial", sans-serif;
 $font-family-headings: "Sorts Mill Goudy", sans-serif;
 
-$color-primary: #677998;
-$color-secondary: #6E6798;
-$color-accent: #679198;
-$color-headings: #333333;
-$color-body: #3c3c3c;
+$colors: (
+    primary: #0339A6,
+    secondary: #023373,
+    tertiary: #BF0A2B,
+    white: #F0F1F2,
+    accent: #735702,
+    text: #040A0D
+);
 
 $transition: ease-in-out .25s;
 

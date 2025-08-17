@@ -1,4 +1,5 @@
 @use "../../settings";
+@use "sass:map";
 
 html {
     font-size: 10px;
@@ -9,7 +10,7 @@ body {
     line-height: 1.5;
     font-family: settings.$font-family-body;
     font-weight: 500;
-    color: settings.$color-body;
+    color: map.get(settings.$colors, text);
 }
 
 h1,
@@ -29,7 +30,7 @@ h6,
     font-style: normal;
     font-weight: 600;
     line-height: 1.2;
-    color: settings.$color-headings;
+    color: map.get(settings.$colors, text);
 }
 
 %h1 {
@@ -55,7 +56,7 @@ h6,
 %h5 {
     font-size: 18px;
     font-weight: 700;
-    color: settings.$color-primary;
+    color: map.get(settings.$colors, primary);
     margin-bottom: 12px;
 }
 
@@ -84,7 +85,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: settings.$color-primary;
+    color: map.get(settings.$colors, primary);
     position: relative;
     transition: color settings.$transition;
     &::before {
@@ -94,17 +95,17 @@ a {
         bottom: -1px;
         left: 0;
         width: 0;
-        border-bottom: 1px solid settings.$color-primary;
+        border-bottom: 1px solid map.get(settings.$colors, primary);
         transition: width settings.$transition,
                     border-color settings.$transition;
     }
 
     &:hover {
-        color: settings.$color-accent;
+        color: map.get(settings.$colors, accent);
 
         &::before {
             width: 82%;
-            border-bottom-color: settings.$color-accent;
+            border-bottom-color: map.get(settings.$colors, accent);
         }
     }
 }

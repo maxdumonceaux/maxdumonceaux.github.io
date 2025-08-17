@@ -2,4 +2,5 @@
 @use "partials/general/layout/lg" as layout;
 @use "partials/general/display/lg" as display;
 
+@use "partials/sections/header/lg" as header;
 @use "partials/sections/socket/lg" as socket;

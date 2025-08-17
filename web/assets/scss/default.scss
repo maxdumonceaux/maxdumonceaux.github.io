@@ -5,6 +5,9 @@
 
 @use "partials/sections/under-construction/default" as underConstruction;
 
+@use "partials/sections/default" as sections;
 @use "partials/sections/header/default" as header;
 @use "partials/sections/footer/default" as footer;
 @use "partials/sections/socket/default" as socket;
+
+@use "partials/sections/cards/default" as cards;

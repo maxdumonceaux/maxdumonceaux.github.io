@@ -1,4 +1,5 @@
 @use "../../settings";
+@use "sass:map";
 
 @keyframes drawerOpen {
     0% {
@@ -15,6 +16,14 @@
     left: 0;
     width: 100%;
     padding: 18px 0;
+    z-index: 10;
+    .logo {
+        a {
+            &::before {
+                display: none;
+            }
+        }
+    }
     img {
         display: block;
     }
@@ -54,8 +63,8 @@
                 margin-top: 2px;
                 display: block;
                 border-radius: 2px;
-                border-bottom: 2px solid settings.$color-body;
-                border-right: 2px solid settings.$color-body;
+                border-bottom: 2px solid map.get(settings.$colors, text);
+                border-right: 2px solid map.get(settings.$colors, text);
                 transform: rotate(45deg);
                 transition: transform settings.$transition, margin settings.$transition;
             }
@@ -75,23 +84,169 @@
         } 
 
         .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 36px;
-            height: 24px;
-            position: absolute;
-            cursor: pointer;
             /** Todo: manually measure this once I have a proper logo in place. */
             top: 33.2px;
+            display: flex;
+            width: 36px;
+            height: 24px;
             right: 15px;
+            position: absolute;
+            overflow: hidden;
+            transition: height settings.$transition,
+                        top settings.$transition;
+            cursor: pointer;
+
             span {
-                border: 1px solid settings.$color-body;
-                background: settings.$color-body;
-                height: 4px;
-                border-radius: 4px;
-                transition: transform settings.$transition;
-                transform-origin: 0 0;
+                display: block;
+            }
+
+            .hat-container {
+                width: 100%;
+                height: 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                span {
+                    height: 4px;
+                    transition: transform settings.$transition;
+                    border: 1px solid map.get(settings.$colors, tertiary);
+                    background: map.get(settings.$colors, tertiary);
+                    transform-origin: 0 0;
+                    width: 60%;
+                    &:first-child {
+                        width: 100%;
+                        border: 1px solid map.get(settings.$colors, text);
+                        background: map.get(settings.$colors, text);
+                        border-radius: 4px;
+                    }
+                    &:last-child {
+                        border: 1px solid map.get(settings.$colors, text);
+                        background: map.get(settings.$colors, text);
+                        flex-grow: 1;
+                        border-radius: 0 0 4px 4px;
+                    }
+                }
+            }
+            .rabbit {
+                position: absolute;
+                width: 60%;
+                display: block;
+                top: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: top settings.$transition;
+
+                .ear {
+                    width: 6px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: map.get(settings.$colors, white);
+                    position: absolute;
+                    transform: translateY(-100%) rotate(15deg);
+                    top: 4px;
+                    right: 3px;
+                    &:first-child {
+                        transform: translateY(-100%) rotate(-15deg);
+                        left: 3px;
+                    }
+                    &::before {
+                        content: "";
+                        display: block;
+                        width: 3px;
+                        height: 7px;
+                        border-radius: 50%;
+                        background-color: map.get(settings.$colors, tertiary);
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        position: absolute;
+                    }
+                }
+                .face {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 75%;
+                    padding-bottom: 75%;
+                    top: 0;
+                    background: map.get(settings.$colors, white);
+                    border-radius: 50%;
+                    .eye {
+                        width: 4px;
+                        height: 4px;
+                        background: map.get(settings.$colors, text);
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 35%;
+                        left: 50%;
+                        transform: translate(50%, -50%);
+                        &::before {
+                            content: "";
+                            width: 1px;
+                            height: 1px;
+                            background: map.get(settings.$colors, white);
+                            position: absolute;
+                            top: 35%;
+                            left: 35%;
+                            transform: translate(-50%, -50%);
+                            display: block;
+                            border-radius: 50%;
+                        }
+
+                        &:first-child {
+                            transform: translate(-150%, -50%);
+                        }
+                    }
+                    .nose {
+                        position: absolute;
+                        bottom: 25%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        border-top: 3px solid map.get(settings.$colors, text);
+                        display: block;
+                        border-left: 2px solid transparent;
+                        border-right: 2px solid transparent;
+                        border-radius: 3px;
+                        &::before,
+                        &::after {
+                            content: "";
+                            border: 1px solid transparent;
+                            display: block;
+                            border-bottom-color: map.get(settings.$colors, text);
+                            border-radius: 50%;
+                            width: 6px;
+                            height: 6px;
+                            position: absolute;
+                            bottom: -1px;
+                            transform: translateX(-1px);
+                        }
+                        &::before {
+                            transform: translateX(calc(-100% + 1px));
+                        }
+                    }
+                }
+
+                &::after {
+                    content: "";
+                    width: 65%;
+                    position: absolute;
+                    left: 50%;
+                    transform: translate(-50%, 30px);
+                    padding-bottom: 85%;
+                    background: map.get(settings.$colors, white);
+                    border-radius: 50%;
+                    display: block;
+                    bottom: 0;
+                }
+            }
+
+            &:hover {
+                top: 22.2px;
+                height: 48px;
             }
         }
     }
@@ -100,26 +255,28 @@
 #toggle-nav:checked {
     ~ .main-container {
         position: relative;
-        &::before {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(settings.$color-body, 0.69);
-        }
 
         .header {
+            > [for="toggle-nav"] {
+                position: absolute;
+                display: block;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                background: rgba(map.get(settings.$colors, text), 0.69);
+                z-index: 10;
+            }
             .menu {
-                box-shadow: 0 0 6px rgba(settings.$color-body, 0.49);
+                z-index: 10;
+                box-shadow: 0 0 6px rgba(map.get(settings.$colors, text), 0.49);
                 position: fixed;
                 top: 0;
-                left: 20%;
+                right: 0;
                 width: 80%;
+                max-width: 400px;
                 height: 100%;
-                padding: 20% 10%;
+                padding: 75px 37.5px;
                 background: #fff;
                 animation: drawerOpen settings.$transition;
                 font-size: 24px;
@@ -136,16 +293,11 @@
                     justify-content: space-between;
                 }
                 .hamburger {
-                    span {
-                        opacity: 0;
-                        &:first-child {
-                            opacity: 1;
-                            transform: rotate(45deg) translateX(-2px);
-                        }
-                        &:last-child {
-                            opacity: 1;
-                            transform: rotate(-45deg) translateX(-5px);
-                        }
+                    top: 22.2px;
+                    height: 48px;
+                    &:hover {
+                        top: 28.2px;
+                        height: 36px;
                     }
                 }
             }
